@@ -63,6 +63,8 @@ app.controller("SeguroController", ['$scope', 'remoteResource', function ($scope
         }, function (data, status) {
             alert("Ha fallado la petición. Estado HTTP:" + status);
         });
+        
+        $scope.urlLogo = "http://www.cursoangularjs.es/lib/exe/fetch.php?cache=&media=unidades:04_masdirectivas:medical14.png";
 
     }
 ]);
