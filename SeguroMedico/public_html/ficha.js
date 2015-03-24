@@ -15,11 +15,11 @@ function RecuperarInformacionExterna($http, baseUrl) {
 
 function RemoteResourceProvider() {
     var _baseUrl;
-    
-    this.setBaseUrl = function(baseUrl) {
+
+    this.setBaseUrl = function (baseUrl) {
         _baseUrl = baseUrl;
     };
-    
+
     this.$get = ['$http', function ($http) {
             return new RecuperarInformacionExterna($http, _baseUrl);
         }];
@@ -28,9 +28,9 @@ function RemoteResourceProvider() {
 app.provider("remoteResource", RemoteResourceProvider);
 
 app.constant("baseUrl", ".");
-app.config(['baseUrl', 'remoteResourceProvider', function (baseUrl, remoteResourceProvider){
+app.config(['baseUrl', 'remoteResourceProvider', function (baseUrl, remoteResourceProvider) {
         remoteResourceProvider.setBaseUrl(baseUrl);
-}]);
+    }]);
 
 
 app.controller("SeguroController", ['$scope', 'remoteResource', function ($scope, remoteResource) {
@@ -63,7 +63,7 @@ app.controller("SeguroController", ['$scope', 'remoteResource', function ($scope
         }, function (data, status) {
             alert("Ha fallado la petición. Estado HTTP:" + status);
         });
-        
+
         $scope.urlLogo = "http://www.cursoangularjs.es/lib/exe/fetch.php?cache=&media=unidades:04_masdirectivas:medical14.png";
 
     }
