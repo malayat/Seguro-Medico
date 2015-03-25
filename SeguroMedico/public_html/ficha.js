@@ -11,6 +11,16 @@ function RecuperarInformacionExterna($http, baseUrl) {
             fnError(status);
         });
     };
+    this.lista = function (fnOK, fnError) {
+        $http({
+            method: 'GET',
+            url: baseUrl + '/listado_seguros.json'
+        }).success(function (data, status, headers, config) {
+            fnOK(data);
+        }).error(function (data, status, headers, config) {
+            fnError(status);
+        });
+    };
 }
 
 function RemoteResourceProvider() {
@@ -32,8 +42,24 @@ app.config(['baseUrl', 'remoteResourceProvider', function (baseUrl, remoteResour
         remoteResourceProvider.setBaseUrl(baseUrl);
     }]);
 
+app.value("urlLogo", "http://www.cursoangularjs.es/lib/exe/fetch.php?cache=&media=unidades:04_masdirectivas:medical14.png");
+app.run(['$rootScope', 'urlLogo', function ($rootScope, urlLogo) {
+        $rootScope.urlLogo = urlLogo;
+    }]);
 
-app.controller("SeguroController", ['$scope', 'remoteResource', function ($scope, remoteResource) {
+app.controller("DetalleSeguroController", ['$scope', 'remoteResource', function ($scope, remoteResource) {
+
+        //array datos sexos
+        $scope.sexos = [
+            {
+                codSexo: "H",
+                descripcion: "Hombre"
+            }, {
+                codSexo: "M",
+                descripcion: "Mujer"
+            }
+        ];
+
         $scope.seguro = {
             nif: "",
             nombre: "",
@@ -60,11 +86,25 @@ app.controller("SeguroController", ['$scope', 'remoteResource', function ($scope
 
         remoteResource.obtener(function (seguro) {
             $scope.seguro = seguro;
-        }, function (data, status) {
+        }, function (status) {
             alert("Ha fallado la petición. Estado HTTP:" + status);
         });
 
-        $scope.urlLogo = "http://www.cursoangularjs.es/lib/exe/fetch.php?cache=&media=unidades:04_masdirectivas:medical14.png";
-
+//        $scope.urlLogo = "http://www.cursoangularjs.es/lib/exe/fetch.php?cache=&media=unidades:04_masdirectivas:medical14.png";
     }
 ]);
+
+app.controller("ListadoSeguroController", ['$scope', 'remoteResource', function ($scope, remoteResource) {
+        $scope.seguros = [];
+
+        remoteResource.lista(function (seguros) {
+            $scope.seguros = seguros;
+        }, function (status) {
+            alert("Ha fallado la peticion. Estado HTTP: " + status);
+        });
+
+    }]);
+
+app.controller("MainController", ['$scope', function ($scope) {
+
+    }]);
