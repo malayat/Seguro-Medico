@@ -38,6 +38,8 @@ function RemoteResourceProvider() {
 app.provider("remoteResource", RemoteResourceProvider);
 
 app.constant("baseUrl", ".");
+//Recuerda que al inyectar el provider en un bloque config hay que incluir en el nombre el sufijo “Provider”.
+//Por ejemplo si el servicio se llama “login” ,al inyectarlo en un bloque config habrá que poner “loginProvider” 
 app.config(['baseUrl', 'remoteResourceProvider', function (baseUrl, remoteResourceProvider) {
         remoteResourceProvider.setBaseUrl(baseUrl);
     }]);
@@ -47,7 +49,43 @@ app.run(['$rootScope', 'urlLogo', function ($rootScope, urlLogo) {
         $rootScope.urlLogo = urlLogo;
     }]);
 
+app.filter("filteri18n", ["$filter", function ($filter) {
+        
+        var filterFn = $filter("filter");
+
+        /** Transforma el texto quitando todos los acentos diéresis, etc. **/
+        function normalize(texto) {
+            texto = texto.replace(/[áàäâ]/g, "a");
+            texto = texto.replace(/[éèëê]/g, "e");
+            texto = texto.replace(/[íìïî]/g, "i");
+            texto = texto.replace(/[óòôö]/g, "o");
+            texto = texto.replace(/[úùüü]/g, "u");
+            texto = texto.toUpperCase();
+            return texto;
+        }
+        
+        /** Esta función es el comparator en el filter **/
+        function comparator (actual, expected) {
+            if(normalize(actual).indexOf(normalize(expected)) >= 0) {
+                return true;
+            }
+            return false;
+        }
+        
+        function filteri18n(array, expression) {
+            //Lo único que hace es llamar al filter original pero pasado
+            //la nueva función de comparator
+            return filterFn(array, expression, comparator);
+        }
+        
+        return filteri18n;
+    }]);
+
 app.controller("DetalleSeguroController", ['$scope', 'remoteResource', function ($scope, remoteResource) {
+        
+        $scope.filtro = {
+            ape1: ""
+        };
 
         //array datos sexos
         $scope.sexos = [
@@ -89,8 +127,6 @@ app.controller("DetalleSeguroController", ['$scope', 'remoteResource', function 
         }, function (status) {
             alert("Ha fallado la petición. Estado HTTP:" + status);
         });
-
-//        $scope.urlLogo = "http://www.cursoangularjs.es/lib/exe/fetch.php?cache=&media=unidades:04_masdirectivas:medical14.png";
     }
 ]);
 

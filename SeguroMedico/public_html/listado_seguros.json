@@ -42,7 +42,7 @@
             "alergia": false,
             "nombreAlergia": ""
         }
-   },
+    },
     {
         "nif": "29069345J",
         "nombre": "Jose",
@@ -63,6 +63,116 @@
             "rinyones": true,
             "alergia": false,
             "nombreAlergia": ""
+        }
+    },
+    {
+        "nif": "23236773B",
+        "nombre": "Teresa",
+        "ape1": "Rubio",
+        "edad": 36,
+        "sexo": "M",
+        "casado": false,
+        "numHijos": 0,
+        "embarazada": true,
+        "coberturas": {
+            "oftalmologia": false,
+            "dental": false,
+            "fecundacionInVitro": true
+        },
+        "enfermedades": {
+            "corazon": false,
+            "estomacal": false,
+            "rinyones": false,
+            "alergia": false,
+            "nombreAlergia": ""
+        }
+    },
+    {
+        "nif": "34828938S",
+        "nombre": "Angel",
+        "ape1": "Navarro",
+        "edad": 21,
+        "sexo": "H",
+        "casado": false,
+        "numHijos": 0,
+        "embarazada": false,
+        "coberturas": {
+            "oftalmologia": true,
+            "dental": true,
+            "fecundacionInVitro": false
+        },
+        "enfermedades": {
+            "corazon": false,
+            "estomacal": false,
+            "rinyones": false,
+            "alergia": true,
+            "nombreAlergia": "Graminias"
+        }
+    },
+    {
+        "nif": "27469252F",
+        "nombre": "Alfredo",
+        "ape1": "Padilla",
+        "edad": 45,
+        "sexo": "H",
+        "casado": true,
+        "numHijos": 2,
+        "embarazada": false,
+        "coberturas": {
+            "oftalmologia": true,
+            "dental": true,
+            "fecundacionInVitro": false
+        },
+        "enfermedades": {
+            "corazon": true,
+            "estomacal": false,
+            "rinyones": false,
+            "alergia": false,
+            "nombreAlergia": ""
+        }
+    },
+    {
+        "nif": "34804406R",
+        "nombre": "Rosa",
+        "ape1": "Muñoz",
+        "edad": 45,
+        "sexo": "M",
+        "casado": true,
+        "numHijos": 3,
+        "embarazada": false,
+        "coberturas": {
+            "oftalmologia": false,
+            "dental": false,
+            "fecundacionInVitro": false
+        },
+        "enfermedades": {
+            "corazon": false,
+            "estomacal": false,
+            "rinyones": false,
+            "alergia": false,
+            "nombreAlergia": ""
+        }
+    },
+    {
+        "nif": "23244114S",
+        "nombre": "Alejandro",
+        "ape1": "Valeno",
+        "edad": 19,
+        "sexo": "H",
+        "casado": false,
+        "numHijos": 0,
+        "embarazada": false,
+        "coberturas": {
+            "oftalmologia": true,
+            "dental": false,
+            "fecundacionInVitro": false
+        },
+        "enfermedades": {
+            "corazon": false,
+            "estomacal": false,
+            "rinyones": false,
+            "alergia": true,
+            "nombreAlergia": "Leche"
         }
     }
 ]

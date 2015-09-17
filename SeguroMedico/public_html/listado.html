@@ -12,6 +12,8 @@
         
         <ng-include src="'cabecera.html'" ></ng-include>
         
+        Filtrar por apellido: <input ng-model="filtro.ape1">
+        
         <table>
             <thead>
                 <tr>
@@ -24,11 +26,12 @@
             <tfoot>
                 <tr>
                     <td colspan="3">El N. de seguros medicos es: </td>
-                    <td ng-model="seguros.length"></td>
+                    <td ng-bind="seguros.length"></td>
                 </tr>
             </tfoot>
             <tbody>
-                <tr ng-repeat="seguro in seguros" ng-style="{color:($odd ? 'red' : 'green')}">
+                <tr ng-repeat="seguro in seguros | filteri18n:{ape1:filtro.ape1}" 
+                    ng-style="{color:($odd ? 'red' : 'green')}">
                     <td><a ng-href="./seguros/edit/{{seguro.nif}}">{{seguro.nif}}</a></td>
                     <td>{{seguro.nombre}}</td>
                     <td>{{seguro.ape1}}</td>
